@@ -1,30 +1,17 @@
-# Turborepo starter
+# Boiler plate starter
 
-This is an official starter Turborepo.
+## ✅ Apps and Packages
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
+- `admin`: a [Next.js](https://nextjs.org/) app
+- `customer`: another [Next.js](https://nextjs.org/) app
+- `services` : containing [Directus](https://directus.io/) app
 - `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+## ⛽️ Utilities
 
 This Turborepo has some additional tools already setup for you:
 
@@ -32,50 +19,119 @@ This Turborepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-### Build
+## 🧑‍💻 Run on your local
 
-To build all apps and packages, run the following command:
+### ❶ setup `.env` inside the `/apps/services` directory
+insert this following script based on the directus documentations [Directus Docs](https://docs.directus.io/self-hosted/config-options.html)
+```
+#  the first user that's automatically created when using directus bootstrap.
+ADMIN_EMAIL= 
+ADMIN_PASSWORD=
+
+# The host on which the Directus server will run
+HOST="0.0.0.0" 
+
+# The port on which the Directus server will be accessible
+PORT=8055
+
+# The database client type (e.g., "pg" for PostgreSQL)
+DB_CLIENT="pg"
+
+# The host address of the database server
+DB_HOST="localhost"
+
+# The port number on which the database server is listening
+DB_PORT=
+
+# The username for connecting to the database
+DB_USER=
+
+# The password for connecting to the database
+DB_PASSWORD=
+
+# The name of the database to connect to
+DB_DATABASE=
 
 ```
-cd my-turborepo
-pnpm build
+
+### ❷ Build Directus Service
+1. Navigate to the services directory and install dependencies:
 ```
+cd apps/services
+pnpm install
+```
+2. Bootstrap the Directus project:
+```
+npx directus bootstrap
+```
+Once these steps are completed, the Directus service will be ready to use.
 
-### Develop
+### ❸ Serve all apps
 
-To develop all apps and packages, run the following command:
+After completing the build process, you can serve all the apps with a single command. Run the following commands in the root directory : 
 
 ```
-cd my-turborepo
+pnpm install
 pnpm dev
 ```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+To start individual apps, use the following commands:
 
 ```
-cd my-turborepo
-npx turbo login
+# Run only the client app
+pnpm dev:client
+
+# Run only the service app
+pnpm dev:service
+
+# Run only the panel app
+pnpm dev:panel
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 🚀 Deployment 
+Follow these steps to deploy your apps setup, which includes two Next.js apps and one Directus service, on your VPS server.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+Ensure Docker and Docker Compose are installed on your VPS server. If they are not installed, you can install them with the following commands:
+```
+# Update package index
+sudo apt update
+
+# Install Docker
+sudo apt install -y docker.io
+
+# Install Docker Compose
+sudo curl -L "https://github.com/docker/compose/releases/download/2.20.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+# Install Git
+sudo apt install -y git
 
 ```
-npx turbo link
+
+Use Git to clone your project repository to your VPS server:
+
+```
+# Clone the repository (replace <repo-url> with your actual repository URL)
+git clone <repo-url> /path/to/your/project
+
+# Navigate to the project directory
+cd /path/to/your/project/docker
+
 ```
 
-## Useful Links
+Run the following command to build and start your Docker containers:
+```
+docker-compose up --build
+```
 
-Learn more about the power of Turborepo:
+Once the containers are running, you can check the logs to ensure everything is working correctly:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+```
+docker-compose logs
+```
+
+To stop and remove the containers, run:
+```
+docker-compose down
+
+```
+
