@@ -8,6 +8,12 @@
     "moduleResolution": "Bundler",
     "allowJs": true,
     "jsx": "preserve",
-    "noEmit": true
+    "noEmit": true,
+
+    "paths": {
+      "@repo/ui/*": ["../../packages/ui/src/*"],
+      "@repo/ui/components/*": ["../../packages/ui/src/components/ui/*"],
+      "@repo/ui/lib": ["../../packages/ui/src/components/ui"]
+    }
   }
 }

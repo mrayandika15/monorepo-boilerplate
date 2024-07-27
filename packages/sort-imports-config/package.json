@@ -1,0 +1,14 @@
+{
+  "name": "@repo/sort-imports-config",
+  "version": "0.0.0",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "next.js"
+  ],
+  "exports": {
+    "./next": "./next.js"
+  }
+}
