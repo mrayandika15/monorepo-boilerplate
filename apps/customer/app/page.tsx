@@ -9,10 +9,10 @@ export default function Home() {
         >
             <div className="flex flex-col items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-4xl font-bold">Shuffle</h1>
+                    <h1 className="text-4xl font-bold">Boilerplate App</h1>
                     <p className="text-lg">
-                        Shuffle is a web app that allows you to shuffle your
-                        music against your friends.
+                        boilerplate for building web apps with react and
+                        shade-ui
                     </p>
                 </div>
                 <div className="mt-10 flex flex-col items-center justify-center">
@@ -23,7 +23,7 @@ export default function Home() {
                                     <div className="w-full border-t border-gray-300" />
                                 </div>
                                 <div className="relative flex justify-center text-sm">
-                                    <Button>Sign in with Google</Button>
+                                    <Button>Example Button</Button>
                                 </div>
                             </div>
                         </div>

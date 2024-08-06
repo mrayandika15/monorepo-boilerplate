@@ -6,7 +6,7 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center">
                 <div className="text-center">
                     <h1 className="text-4xl font-bold">
-                        Typescript Boilerplate
+                        Typescript Boilerplate Panel
                     </h1>
                     <p className="text-lg">
                         Typescript Boilerplate is a starter template for
@@ -22,7 +22,7 @@ export default function Home() {
                                     <div className="w-full border-t border-gray-300" />
                                 </div>
                                 <div className="relative flex justify-center text-sm">
-                                    <Button>Example Button</Button>
+                                    <Button isLoading>Example Button</Button>
                                 </div>
                             </div>
                         </div>

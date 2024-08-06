@@ -13,8 +13,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-    title: 'Shuffle Panel',
-    description: 'Shuffle Panel is a Administration Panel for Shuffle Music.',
+    title: 'Boilerplate Panel',
+    description: 'Boilerplate Panel descriptions',
 };
 
 export default function RootLayout({
